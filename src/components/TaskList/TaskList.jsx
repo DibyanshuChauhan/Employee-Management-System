@@ -1,52 +1,27 @@
 import React from 'react'
+import AcceptTask from './AcceptTask'
+import NewTask from './NewTask'
+import CompleteTask from './CompleteTask'
+import FailedTask from './FailedTask'
 
-const TaskList = () => {
+const TaskList = ({ data }) => {
     return (
         <div id='tasklist' className='h-[55%] py-5 w-full mt-10 flex items-center justify-start gap-5 flex-nowrap overflow-x-auto'>
-            <div className='flex-shrink-0 h-full w-[300px] p-5 bg-lime-400 rounded-xl'>
-                <div className='flex justify-between items-center'>
-                    <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                    <h4 className='text-sm'>23 March 2025</h4>
-                </div>
-                <h2 className='mt-5 text-2xl font-semibold'>Make a YT video.</h2>
-                <p className='text-sm mt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam quos quaerat repudiandae explicabo aperiam amet nisi.</p>
-            </div>
 
-            <div className='flex-shrink-0 h-full w-[300px] p-5 bg-amber-400 rounded-xl'>
-                <div className='flex justify-between items-center'>
-                    <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                    <h4 className='text-sm'>23 March 2025</h4>
-                </div>
-                <h2 className='mt-5 text-2xl font-semibold'>Make a YT video.</h2>
-                <p className='text-sm mt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam quos quaerat repudiandae explicabo aperiam amet nisi.</p>
-            </div>
-
-            <div className='flex-shrink-0 h-full w-[300px] p-5 bg-cyan-400 rounded-xl'>
-                <div className='flex justify-between items-center'>
-                    <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                    <h4 className='text-sm'>23 March 2025</h4>
-                </div>
-                <h2 className='mt-5 text-2xl font-semibold'>Make a YT video.</h2>
-                <p className='text-sm mt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam quos quaerat repudiandae explicabo aperiam amet nisi.</p>
-            </div>
-
-            <div className='flex-shrink-0 h-full w-[300px] p-5 bg-orange-400 rounded-xl'>
-                <div className='flex justify-between items-center'>
-                    <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                    <h4 className='text-sm'>23 March 2025</h4>
-                </div>
-                <h2 className='mt-5 text-2xl font-semibold'>Make a YT video.</h2>
-                <p className='text-sm mt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam quos quaerat repudiandae explicabo aperiam amet nisi.</p>
-            </div>
-
-            <div className='flex-shrink-0 h-full w-[300px] p-5 bg-fuchsia-400 rounded-xl'>
-                <div className='flex justify-between items-center'>
-                    <h3 className='bg-red-600 px-3 py-1 rounded text-sm'>High</h3>
-                    <h4 className='text-sm'>23 March 2025</h4>
-                </div>
-                <h2 className='mt-5 text-2xl font-semibold'>Make a YT video.</h2>
-                <p className='text-sm mt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam quos quaerat repudiandae explicabo aperiam amet nisi.</p>
-            </div>
+            {data.tasks.map((elem, index) => {
+                if (elem.active) {
+                    return <AcceptTask key={index} data={elem} />
+                }
+                if (elem.newTask) {
+                    return <NewTask key={index} data={elem} />
+                }
+                if (elem.completed) {
+                    return <CompleteTask key={index} data={elem} />
+                }
+                if (elem.failed) {
+                    return <FailedTask key={index} data={elem} />
+                }
+            })}
         </div>
     )
 }
